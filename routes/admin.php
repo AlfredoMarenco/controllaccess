@@ -19,7 +19,8 @@ use Maatwebsite\Excel\Facades\Excel;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.');
+
 });
 
 
