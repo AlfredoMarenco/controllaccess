@@ -18,6 +18,29 @@ class ControllAccessComponent extends Component
         if ($barcode) {
         $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
             switch ($barcode->status) {
+                case '0':
+                    if ($this->type==1) {
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'CODIGO YA INGRESADO',
+                            'html' => 'ALTO - TARJETA YA INGRESADA <br> <small>'.$barcode->updated_at.'</small>',
+                            'icon' => 'error',
+                            'timer' => 2500,
+                        ]);
+                    } else {
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'SALIDA ASIGNADA',
+                            'html' => 'TARJETA REINICIADA PARA REINGRESO',
+                            'icon' => 'success',
+                            'timer' => 1300,
+                        ]);
+                        $barcode->update([
+                            'status' => "2",
+                        ]);
+                    }
+
+                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->reset('barcode');
+                    break;
                 case '1':
                     $this->dispatchBrowserEvent('valid',[
                         'title' => 'CODIGO VALIDO',
@@ -25,11 +48,24 @@ class ControllAccessComponent extends Component
                         'icon' => 'success',
                         'timer' => 1300,
                     ]);
+                    $barcode->update([
+                        'status' => "0",
+                    ]);
+                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
                     $this->reset('barcode');
                     break;
-
-                default:
-                    # code...
+                case '2':
+                    $this->dispatchBrowserEvent('valid',[
+                        'title' => 'CODIGO VALIDO',
+                        'html' => 'PASE - TARJETA DE REINGRESO',
+                        'icon' => 'success',
+                        'timer' => 1300,
+                    ]);
+                    $barcode->update([
+                        'status' => "0",
+                    ]);
+                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->reset('barcode');
                     break;
             }
         }else{
