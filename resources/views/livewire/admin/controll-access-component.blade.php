@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <form wire:submit.prevent='valid'>
-                    <div class="flex mx-auto px-4 py-2">
-                        <x-jet-label class="mx-4 mb-2" value="Ingreso:" />
+                    <div class="flex mx-auto px-4 py-4 items-center">
+                        <x-jet-label class="mx-4" value="Ingreso:" />
                         <input type="radio" wire:model="type" name="type" value="1">
-                        <x-jet-label class="mx-4 mb-2" value="Salida:" />
+                        <x-jet-label class="mx-4" value="Salida:" />
                         <input type="radio" wire:model="type" name="type" value="2">
                     </div>
                     <div class="mx-auto p-4 text-center">
