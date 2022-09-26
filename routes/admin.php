@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\EventController;
+use App\Http\Livewire\Admin\ControllAccessComponent;
 use App\Imports\CodesImport;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -19,9 +20,9 @@ use Maatwebsite\Excel\Facades\Excel;
 */
 
 Route::get('/', function () {
-    alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.');
-
+    return view('dashboard');
 });
 
+Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
 
 Route::resource('/events',EventController::class);

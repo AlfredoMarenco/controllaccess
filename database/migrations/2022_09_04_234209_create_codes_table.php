@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('order')->nullable();
             $table->string('sales_channel')->nullable();
             $table->string('ext')->nullable();
+            $table->enum('status',[0,1,2,3,4,5,6,7,8,9]);
             $table->foreignId('event_id')->constrained();
             $table->timestamps();
         });

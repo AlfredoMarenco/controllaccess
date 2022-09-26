@@ -12,11 +12,10 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Styles -->
         @livewireStyles
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -39,11 +38,11 @@
             </main>
         </div>
 
+        @stack('js')
+
         @stack('modals')
 
 
         @livewireScripts
-
-
     </body>
     </html>
