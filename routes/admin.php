@@ -3,6 +3,7 @@
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\EventController;
 use App\Http\Livewire\Admin\ControllAccessComponent;
+use App\Http\Livewire\Admin\ReportComponent;
 use App\Imports\CodesImport;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -24,5 +25,6 @@ Route::get('/', function () {
 });
 
 Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
+Route::get('/reports',ReportComponent::class)->name('reports');
 
 Route::resource('/events',EventController::class);
