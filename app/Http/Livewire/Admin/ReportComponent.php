@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Admin\Code;
+use App\Models\Admin\Box;
 use Livewire\Component;
 
 class ReportComponent extends Component
@@ -10,8 +10,7 @@ class ReportComponent extends Component
     public function render()
     {
         return view('livewire.admin.report-component',[
-            'palcos' => Code::where('section','PLATINO')->distinct('row')->get(),
-            'boxs' => Code::all(),
+            'boxs' => Box::all(),
         ]);
     }
 }

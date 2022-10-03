@@ -9,17 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="px-4 pb-4 mb-4 shadow-xl bg-white">
-                    <div class="grid grid-cols-5 gap-8 place-content-center">
-                        @foreach ($palcos as $palco)
+                    <div class="grid grid-cols-5 gap-8 place-content-center p-4">
+                        @foreach ($boxs as $palco)
                             <div>
-                                <h1>Palco {{ $palco->section }} {{ $palco->row }}</h1>
+                                <h1 class="text-center font-bold p-2">Palco {{ $palco->name }} {{ $palco->identifier }}</h1>
                                 <div class="grid grid-cols-4 gap-2 place-content-center">
-                                    @foreach ($boxs as $box)
-                                        @if ($palco->row == $box->row && $palco->section == $box->section)
-                                            @if ($box->status == 1)
+                                    @foreach ($palco->codes as $seat)
+                                        @if ($seat->box_id == $palco->id )
+                                            @if ($seat->status == 1)
                                                 <div
                                                     class="flex justify-center items-center bg-green-600 text-white text-lg font-bold shadow-lg">
-                                                    <p>{{ $box->seat }}</p>
+                                                    <p>{{ $seat->seat }}</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4">
@@ -28,10 +28,10 @@
                                                     </svg>
 
                                                 </div>
-                                            @elseif($box->status == 2)
+                                            @elseif($seat->status == 2)
                                                 <div
                                                     class="flex justify-center items-center bg-orange-600 text-white text-lg font-bold shadow-lg">
-                                                    <p>{{ $box->seat }}</p>
+                                                    <p>{{ $seat->seat }}</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4">
@@ -42,7 +42,7 @@
                                             @else
                                                 <div
                                                     class="flex bg-red-600 justify-center text-white text-lg font-bold shadow-lg items-center">
-                                                    <p>{{ $box->seat }}</p>
+                                                    <p>{{ $seat->seat }}</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4">

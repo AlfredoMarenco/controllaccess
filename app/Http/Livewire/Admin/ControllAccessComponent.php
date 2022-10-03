@@ -27,43 +27,71 @@ class ControllAccessComponent extends Component
                             'timer' => 2500,
                         ]);
                     } else {
-                        $this->dispatchBrowserEvent('valid',[
-                            'title' => 'SALIDA ASIGNADA',
-                            'html' => 'TARJETA REINICIADA PARA REINGRESO',
-                            'icon' => 'success',
-                            'timer' => 1300,
-                        ]);
-                        $barcode->update([
-                            'status' => "2",
-                        ]);
+                        if (!$barcode->status == 1) {
+                            $this->dispatchBrowserEvent('valid',[
+                                'title' => 'SALIDA ASIGNADA',
+                                'html' => 'TARJETA REINICIADA PARA REINGRESO',
+                                'icon' => 'success',
+                                'timer' => 1300,
+                            ]);
+                            $barcode->update([
+                                'status' => "2",
+                            ]);
+                        }else{
+                            $this->dispatchBrowserEvent('valid',[
+                                'title' => 'LA TARJETA NO A INGRESADO',
+                                'html' => 'ESTA TARJETA NO HA INGRESADO',
+                                'icon' => 'warning',
+                                'timer' => 2500,
+                            ]);
+                        }
                     }
 
                     $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
                     $this->reset('barcode');
                     break;
                 case '1':
-                    $this->dispatchBrowserEvent('valid',[
-                        'title' => 'CODIGO VALIDO',
-                        'html' => 'PASE',
-                        'icon' => 'success',
-                        'timer' => 1300,
-                    ]);
-                    $barcode->update([
-                        'status' => "0",
-                    ]);
+                    if ($this->type == 1) {
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'CODIGO VALIDO',
+                            'html' => 'PASE',
+                            'icon' => 'success',
+                            'timer' => 1300,
+                        ]);
+                        $barcode->update([
+                            'status' => "0",
+                        ]);
+                    }else{
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'LA TARJETA NO A INGRESADO',
+                            'html' => 'ESTA TARJETA NO HA INGRESADO',
+                            'icon' => 'warning',
+                            'timer' => 2500,
+                        ]);
+                    }
                     $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
                     $this->reset('barcode');
                     break;
                 case '2':
-                    $this->dispatchBrowserEvent('valid',[
-                        'title' => 'CODIGO VALIDO',
-                        'html' => 'PASE - TARJETA DE REINGRESO',
-                        'icon' => 'success',
-                        'timer' => 1300,
-                    ]);
-                    $barcode->update([
-                        'status' => "0",
-                    ]);
+                    if ($this->type == 1) {
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'CODIGO VALIDO',
+                            'html' => 'PASE - TARJETA DE REINGRESO',
+                            'icon' => 'success',
+                            'timer' => 1300,
+                        ]);
+                        $barcode->update([
+                            'status' => "0",
+                        ]);
+
+                    }else{
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'NO SE LE PUEDE ASIGNAR SALIDA',
+                            'html' => 'YA CUENTA CON UNA SALIDA ASIGNADA',
+                            'icon' => 'warning',
+                            'timer' => 2500,
+                        ]);
+                    }
                     $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
                     $this->reset('barcode');
                     break;

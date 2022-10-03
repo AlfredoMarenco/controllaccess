@@ -5,6 +5,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Livewire\Admin\ControllAccessComponent;
 use App\Http\Livewire\Admin\ReportComponent;
 use App\Imports\CodesImport;
+use App\Models\Admin\Box;
+use App\Models\Admin\Code;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
@@ -26,5 +28,15 @@ Route::get('/', function () {
 
 Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
 Route::get('/reports',ReportComponent::class)->name('reports');
+
+Route::get('/update-box', function(){
+    $codes = Code::all();
+    foreach ($codes as $code) {
+        $box = Box::where('name',$code->section)->where('identifier',$code->row)->first();
+        $code->update([
+            'box_id' => $box->id
+        ]);
+    }
+});
 
 Route::resource('/events',EventController::class);
