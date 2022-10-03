@@ -12,7 +12,7 @@
                     <div class="grid grid-cols-5 gap-8 place-content-center p-4">
                         @foreach ($boxs as $palco)
                             <div>
-                                <h1 class="text-center font-bold p-2">Palco {{ $palco->name }} {{ $palco->identifier }}</h1>
+                                <h1 class="text-center font-bold p-2">PALCO {{ $palco->name }} {{ $palco->identifier }}</h1>
                                 <div class="grid grid-cols-4 gap-2 place-content-center">
                                     @foreach ($palco->codes as $seat)
                                         @if ($seat->box_id == $palco->id )

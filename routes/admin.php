@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\EventController;
+use App\Http\Livewire\Admin\AdministrationComponent;
 use App\Http\Livewire\Admin\ControllAccessComponent;
 use App\Http\Livewire\Admin\ReportComponent;
 use App\Imports\CodesImport;
@@ -28,6 +29,8 @@ Route::get('/', function () {
 
 Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
 Route::get('/reports',ReportComponent::class)->name('reports');
+Route::get('/administration',AdministrationComponent::class)->name('administration');
+
 
 Route::get('/update-box', function(){
     $codes = Code::all();
