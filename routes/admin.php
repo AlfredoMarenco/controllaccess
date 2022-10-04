@@ -36,9 +36,12 @@ Route::get('/update-box', function(){
     $codes = Code::all();
     foreach ($codes as $code) {
         $box = Box::where('name',$code->section)->where('identifier',$code->row)->first();
-        $code->update([
-            'box_id' => $box->id
-        ]);
+        if ($box) {
+            $code->update([
+                'box_id' => $box->id
+            ]);
+        }
+
     }
 });
 
