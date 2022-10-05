@@ -53,6 +53,8 @@ class AdministrationComponent extends Component
         $this->add_view = true;
         $this->identifier = $this->box->identifier;
         $this->name = $this->box->name;
+        $this->resetErrorBag();
+        $this->reset('barcode');
     }
 
     public function addCode(){
