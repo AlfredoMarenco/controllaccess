@@ -8,6 +8,28 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
+                <div class="flex items-center justify-start p-6 space-x-10">
+                    <div>
+                        <x-jet-label value="Seccion:" />
+                        <select wire:model="box_name"
+                            class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm py-1">
+                            <option value="" selected>Todos</option>
+                            @foreach ($boxes_names->unique('name') as $item)
+                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <x-jet-label value="Palco:" />
+                        <select wire:model="box_identifier"
+                            class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm py-1">
+                            <option value="" selected>Todos</option>
+                            @foreach ($boxes_identifiers->unique('identifier') as $identifier)
+                                <option value="{{ $identifier->identifier }}">{{ $identifier->identifier }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 @if ($boxs_view)
                     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
@@ -42,9 +64,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="p-4">
+                        {{-- <div class="p-4">
                             {{ $boxs->links() }}
-                        </div>
+                        </div> --}}
                     </div>
                 @endif
                 @if ($box_view)

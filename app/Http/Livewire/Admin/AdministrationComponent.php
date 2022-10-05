@@ -17,6 +17,9 @@ class AdministrationComponent extends Component
     public $section;
     public $seat;
     public $barcode;
+    public $boxes;
+    public $box_name='';
+    public $box_identifier='';
 
     public $seatEdit = [
         'id'=> '',
@@ -62,14 +65,14 @@ class AdministrationComponent extends Component
     public function addCode(){
         $this->validate([
             'barcode' => 'unique:codes',
-            'seat' => 'required',
+            'seat' => 'required|max:2',
         ]);
         $code = Code::create([
             'barcode' => $this->barcode,
             'section' => $this->name,
             'row' => $this->identifier,
             'seat' => $this->seat,
-            'status' => 1,
+            'status' => "1",
             'event_id' => 1,
             'box_id' => $this->box->id
 
@@ -82,7 +85,7 @@ class AdministrationComponent extends Component
     public function updateSeat($id){
         $this->barcode = $this->seatEdit['barcode'];
         $rules = [
-            'barcode' => 'required|unique:codes,barcode,'.$id
+            'barcode' => 'required|unique:codes,barcode,'.$id,
         ];
         $code = Code::find($id);
         $this->validate($rules);
@@ -100,10 +103,26 @@ class AdministrationComponent extends Component
         $this->seat_view = false;
     }
 
+    public function mount(){
+        $this->boxes_names = Box::distinct('name')->get();
+        $this->boxes_identifiers = Box::distinct('identifier')->get();
+    }
+
     public function render()
     {
-        return view('livewire.admin.administration-component',[
-            'boxs' => Box::paginate()
-        ]);
+        if ($this->box_name && $this->box_identifier) {
+            $boxs = Box::where('name',$this->box_name)->where('identifier',$this->box_identifier)->paginate();
+        }
+        if (!$this->box_name && $this->box_identifier) {
+            $boxs = Box::where('identifier',$this->box_identifier)->paginate();
+        }
+        if ($this->box_name && !$this->box_identifier) {
+            $boxs = Box::where('name',$this->box_name)->paginate();
+        }
+        if ($this->box_name == "" && $this->box_identifier == "") {
+            $boxs = Box::paginate();
+        }
+
+        return view('livewire.admin.administration-component',compact('boxs'));
     }
 }
