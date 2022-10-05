@@ -49,7 +49,7 @@
                 @endif
                 @if ($box_view)
                     <div class="flex justify-end items-center mt-4">
-                        <x-jet-button>Agregar tarjeta</x-jet-button>
+                        <x-jet-button wire:click="showAdd">Agregar tarjeta</x-jet-button>
                     </div>
                     <div class="w-full px-4 py-4 my-4 shadow-xl bg-gray-300">
                         <div class="grid grid-cols-4 gap-2 mt-6">
@@ -61,12 +61,48 @@
                             @endforeach
                         </div>
                     </div>
+                    {{-- Formulario de creacion de tarjetas --}}
+                    <x-jet-dialog-modal wire:model="add_view">
+                        <x-slot name="title">
+                            Agregar tarjeta
+                        </x-slot>
+                        <x-slot name="content">
+                            <form wire:submit.prevent="" class="w-full">
+                                <div class="w-full">
+                                    <x-jet-label value="Section:" />
+                                    <x-jet-input type="text" class="w-full bg-gray-100" wire:model="name"
+                                        disabled />
+                                </div>
+                                <div class="w-full">
+                                    <x-jet-label value="Palco:" />
+                                    <x-jet-input type="text" class="w-full bg-gray-100"
+                                        wire:model="identifier" disabled />
+                                </div>
+                                <div class="w-full">
+                                    <x-jet-label value="Tarjeta:" />
+                                    <x-jet-input type="text" class="w-full" wire:model="seat" />
+                                    @error('seat') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="w-full">
+                                    <x-jet-label value="Codigo:" />
+                                    <x-jet-input type="text" class="w-full" wire:model="barcode" />
+                                    @error('barcode') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                            </form>
+                        </x-slot>
+                        <x-slot name="footer">
+                            <x-jet-secondary-button class="mr-4" wire:click="$set('add_view',false)">Cancelar
+                            </x-jet-secondary-button>
+                            <x-jet-button wire:click="addCode">Agregar</x-jet-button>
+                        </x-slot>
+                    </x-jet-dialog-modal>
+                    {{-- Formulario de edicion de tarjetas --}}
                     <x-jet-dialog-modal wire:model="seat_view">
                         <x-slot name="title">
                             {{-- {{ $seat->box->name }} {{ $seat->box->identifier }} - Tarjeta {{ $seat->row }} --}}
                         </x-slot>
                         <x-slot name="content">
-                            <form wire:submit.prevent="" class="w-full">
+                            <form class="w-full">
                                 <div class="w-full">
                                     <x-jet-label value="Section:" />
                                     <x-jet-input type="text" class="w-full bg-gray-100" wire:model="seatEdit.name"
@@ -85,9 +121,10 @@
                                 <div class="w-full">
                                     <x-jet-label value="Codigo:" />
                                     <x-jet-input type="text" class="w-full" wire:model="seatEdit.barcode" />
+                                    @error('barcode') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="w-full flex justify-end mt-4">
-                                    <x-jet-danger-button class="text-xs">Eliminar Tarjeta</x-jet-danger-button>
+                                    <x-jet-danger-button class="text-xs" wire:click="deleteSeat({{ $seatEdit['id'] }})">Eliminar Tarjeta</x-jet-danger-button>
                                 </div>
                             </form>
                         </x-slot>
