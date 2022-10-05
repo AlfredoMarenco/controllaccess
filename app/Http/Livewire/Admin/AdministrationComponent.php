@@ -33,6 +33,8 @@ class AdministrationComponent extends Component
         'barcode.unique' => 'Este código ya fue asignado a una tarjeta'
     ];
 
+    public $listeners = ['deleteSeat'];
+
     public function showBox(Box $box){
         $this->box_view = true;
         $this->boxs_view=false;

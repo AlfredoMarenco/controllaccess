@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
                 @if ($boxs_view)
                     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
@@ -51,8 +51,8 @@
                     <div class="flex justify-end items-center mt-4">
                         <x-jet-button wire:click="showAdd">Agregar tarjeta</x-jet-button>
                     </div>
-                    <div class="w-full px-4 py-4 my-4 shadow-xl bg-gray-300">
-                        <div class="grid grid-cols-4 gap-2 mt-6">
+                    <div class="w-full px-4 py-4 my-4 shadow-xl bg-gray-200">
+                        <div class="grid grid-cols-4 gap-2 mt-6 mb-6">
                             @foreach ($box->codes as $seat)
                                 <div wire:click="showSeat({{ $seat }})"
                                     class="flex justify-center items-center bg-green-600 hover:bg-green-800 text-white text-lg font-bold shadow-lg cursor-pointer">
@@ -70,23 +70,26 @@
                             <form wire:submit.prevent="" class="w-full">
                                 <div class="w-full">
                                     <x-jet-label value="Section:" />
-                                    <x-jet-input type="text" class="w-full bg-gray-100" wire:model="name"
-                                        disabled />
+                                    <x-jet-input type="text" class="w-full bg-gray-100" wire:model="name" disabled />
                                 </div>
                                 <div class="w-full">
                                     <x-jet-label value="Palco:" />
-                                    <x-jet-input type="text" class="w-full bg-gray-100"
-                                        wire:model="identifier" disabled />
+                                    <x-jet-input type="text" class="w-full bg-gray-100" wire:model="identifier"
+                                        disabled />
                                 </div>
                                 <div class="w-full">
                                     <x-jet-label value="Tarjeta:" />
                                     <x-jet-input type="text" class="w-full" wire:model="seat" />
-                                    @error('seat') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                    @error('seat')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="w-full">
                                     <x-jet-label value="Codigo:" />
                                     <x-jet-input type="text" class="w-full" wire:model="barcode" />
-                                    @error('barcode') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                    @error('barcode')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </form>
                         </x-slot>
@@ -121,10 +124,14 @@
                                 <div class="w-full">
                                     <x-jet-label value="Codigo:" />
                                     <x-jet-input type="text" class="w-full" wire:model="seatEdit.barcode" />
-                                    @error('barcode') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                    @error('barcode')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="w-full flex justify-end mt-4">
-                                    <x-jet-danger-button class="text-xs" wire:click="deleteSeat({{ $seatEdit['id'] }})">Eliminar Tarjeta</x-jet-danger-button>
+                                    <x-jet-danger-button class="text-xs"
+                                        wire:click="$emit('seatDelete',{{ $seatEdit['id'] }})">Eliminar Tarjeta
+                                    </x-jet-danger-button>
                                 </div>
                             </form>
                         </x-slot>
@@ -138,4 +145,28 @@
             </div>
         </div>
     </div>
+    @push('js')
+        <script>
+            Livewire.on('seatDelete', seatId => {
+                Swal.fire({
+                    title: 'Estas seguro?',
+                    text: "Si eliminas la tarjeta todos los datos se perderan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, eliminar!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('admin.administration-component', 'deleteSeat', seatId);
+                        Swal.fire(
+                            'Tarjeta eliminada!',
+                            'La tarjeta se elimino con exito.',
+                            'success'
+                        )
+                    }
+                })
+            })
+        </script>
+    @endpush
 </div>
