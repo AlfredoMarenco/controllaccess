@@ -8,6 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
+                @if ($boxs_view)
                 <div class="flex items-center justify-start p-6 space-x-10">
                     <div>
                         <x-jet-label value="Seccion:" />
@@ -30,7 +31,6 @@
                         </select>
                     </div>
                 </div>
-                @if ($boxs_view)
                     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
