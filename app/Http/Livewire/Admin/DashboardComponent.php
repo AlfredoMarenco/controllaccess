@@ -52,6 +52,8 @@ class DashboardComponent extends Component
         ->addColumn('Platino Escaneados', $platino_scanner, '#C6C0C1')
         ->addColumn('Platino No Escaneado', $platino_actives, '#D3DCDE');
 
+        /* Comentario */
+
         return view('livewire.admin.dashboard-component',[
             'pieChartOcupation' => $pieChartOcupation,
             'pieChartForSections' => $pieChartForSections
