@@ -19,7 +19,7 @@
                         {{ __('Control de Accesos') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')">
-                        {{ __('Reports') }}
+                        {{ __('Visualizar Palcos') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('admin.administration') }}" :active="request()->routeIs('admin.administration')">
                         {{ __('Administration') }}
