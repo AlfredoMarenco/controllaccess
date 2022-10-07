@@ -4,6 +4,7 @@ use App\Http\Controllers\CodeController;
 use App\Http\Controllers\EventController;
 use App\Http\Livewire\Admin\AdministrationComponent;
 use App\Http\Livewire\Admin\ControllAccessComponent;
+use App\Http\Livewire\Admin\DashboardComponent;
 use App\Http\Livewire\Admin\ReportComponent;
 use App\Imports\CodesImport;
 use App\Models\Admin\Box;
@@ -23,9 +24,7 @@ use Maatwebsite\Excel\Facades\Excel;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', DashboardComponent::class)->name('dashboard');
 
 Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
 Route::get('/reports',ReportComponent::class)->name('reports');

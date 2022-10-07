@@ -44,6 +44,7 @@
 
 
         @livewireScripts
+        @livewireChartsScripts
         @stack('js')
     </body>
     </html>
