@@ -12,10 +12,11 @@
                     <div class="grid grid-cols-5 gap-8 place-content-center p-4">
                         @foreach ($boxs as $palco)
                             <div>
-                                <h1 class="text-center font-bold p-2">PALCO {{ $palco->name }} {{ $palco->identifier }}</h1>
+                                <h1 class="text-center font-bold p-2">PALCO {{ $palco->name }} {{ $palco->identifier }}
+                                </h1>
                                 <div class="grid grid-cols-4 gap-2 place-content-center">
                                     @foreach ($palco->codes->sortBy('seat') as $seat)
-                                        @if ($seat->box_id == $palco->id )
+                                        @if ($seat->box_id == $palco->id)
                                             @if ($seat->status == 1)
                                                 <div
                                                     class="flex justify-center items-center bg-green-600 text-white text-lg font-bold shadow-lg">
@@ -26,7 +27,6 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                                     </svg>
-
                                                 </div>
                                             @elseif($seat->status == 2)
                                                 <div
@@ -42,13 +42,24 @@
                                             @else
                                                 <div
                                                     class="flex bg-red-600 justify-center text-white text-lg font-bold shadow-lg items-center">
-                                                    <p>{{ $seat->seat }}</p>
+                                                    <p class="cursor-pointer" data-popover-target="popover-description"
+                                                        data-popover-placement="bottom-end">{{ $seat->seat }}
+                                                    <div data-popover id="popover-description" role="tooltip"
+                                                        class="inline-block absolute invisible z-10 w-72 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                                                        <div class="p-3 space-y-2">
+                                                            <h3 class="font-semibold text-gray-900 dark:text-white">
+                                                                Escaneado</h3>
+                                                            <p>{{ $seat->updated_at }}</p>
+                                                        </div>
+                                                        <div data-popper-arrow></div>
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                                                     </svg>
+                                                    </p>
                                                 </div>
                                             @endif
                                         @endif
