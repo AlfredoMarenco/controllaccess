@@ -28,7 +28,7 @@
                         @endif
                         <div class="grid grid-cols-4 gap-2 place-content-center">
                             @if ($boxs)
-                                @foreach ($boxs as $box)
+                                @foreach ($boxs->sortBy('seat') as $box)
                                     @if ($box->status == 1)
                                         <div
                                             class="flex justify-center items-center bg-green-600 text-white text-lg font-bold shadow-lg">

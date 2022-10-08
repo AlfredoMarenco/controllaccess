@@ -14,7 +14,7 @@
                             <div>
                                 <h1 class="text-center font-bold p-2">PALCO {{ $palco->name }} {{ $palco->identifier }}</h1>
                                 <div class="grid grid-cols-4 gap-2 place-content-center">
-                                    @foreach ($palco->codes as $seat)
+                                    @foreach ($palco->codes->sortBy('seat') as $seat)
                                         @if ($seat->box_id == $palco->id )
                                             @if ($seat->status == 1)
                                                 <div
