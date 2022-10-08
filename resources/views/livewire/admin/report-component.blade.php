@@ -42,7 +42,14 @@
                                             @else
                                                 <div
                                                     class="flex bg-red-600 justify-center text-white text-lg font-bold shadow-lg items-center">
-                                                    <p>{{ $seat->seat }}</p>
+                                                    <p data-popover-target="popover-description" data-popover-placement="bottom-end">{{ $seat->seat }}</p>
+                                                    <div data-popover id="popover-description" role="tooltip" class="inline-block absolute invisible z-10 w-72 text-sm font-light text-gray-500 bg-white rounded-lg border border-gray-200 shadow-sm opacity-0 transition-opacity duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                                                        <div class="p-3 space-y-2">
+                                                            <h3 class="font-semibold text-gray-900 dark:text-white">Escaneado</h3>
+                                                            <p>{{ $seat->updated_at }}</p>
+                                                        </div>
+                                                        <div data-popper-arrow></div>
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-4 h-4">
