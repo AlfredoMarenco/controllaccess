@@ -15,7 +15,8 @@ class CodeController extends Controller
      */
     public function index()
     {
-        
+        $codes = Code::all();
+        return $codes;
     }
 
     /**
@@ -47,7 +48,7 @@ class CodeController extends Controller
      */
     public function show(Code $code)
     {
-        //
+        return $code;
     }
 
     /**
