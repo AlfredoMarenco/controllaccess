@@ -16,7 +16,7 @@ class CodeController extends Controller
     public function index()
     {
         $codes = Code::all();
-        return json_encode($codes);
+        return json_decode($codes);
     }
 
     /**
