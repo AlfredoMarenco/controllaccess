@@ -16,7 +16,7 @@ class CodeController extends Controller
     public function index()
     {
         $codes = Code::all();
-        return $codes;
+        return json_encode($codes);
     }
 
     /**
@@ -46,9 +46,10 @@ class CodeController extends Controller
      * @param  \App\Models\Admin\Code  $code
      * @return \Illuminate\Http\Response
      */
-    public function show(Code $code)
+    public function show($code)
     {
-        return $code;
+        $response = Code::where('barcode',$code)->first();
+        return $response;
     }
 
     /**
