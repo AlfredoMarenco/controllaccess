@@ -72,7 +72,11 @@ class CodeController extends Controller
      */
     public function update(UpdateCodeRequest $request, Code $code)
     {
-        //
+        $code->update([
+            'status' => "0"
+        ]);
+
+        return $code;
     }
 
     /**
