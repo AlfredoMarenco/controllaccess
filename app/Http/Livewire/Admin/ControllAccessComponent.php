@@ -26,6 +26,7 @@ class ControllAccessComponent extends Component
                             'icon' => 'error',
                             'timer' => 2500,
                         ]);
+                        $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
                     } else {
                         if (!$barcode->status == 1) {
                             $this->dispatchBrowserEvent('valid',[
