@@ -5,9 +5,12 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Admin\Box;
 use App\Models\Admin\Code;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdministrationComponent extends Component
 {
+
+    use WithPagination;
     public $boxs_view=true;
     public $box_view=false;
     public $seat_view=false;
