@@ -26,7 +26,7 @@
                             <h1 class="text-center text-lg pt-2 mb-2">Palco: {{ $boxs->first()->section }}
                                 {{ $boxs->first()->row }}</h1>
                         @endif
-                        <div class="grid grid-cols-4 gap-2 place-content-center" wire:ignore>
+                        <div class="grid grid-cols-4 gap-2 place-content-center">
                             @if ($boxs)
                                 @foreach ($boxs->sortBy('seat') as $box)
                                     @if ($box->status == 1)

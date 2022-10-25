@@ -84,6 +84,7 @@ class ControllAccessComponent extends Component
                         $barcode->update([
                             'status' => "0",
                         ]);
+                        $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
 
                     }else{
                         $this->dispatchBrowserEvent('valid',[
