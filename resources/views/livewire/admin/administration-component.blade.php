@@ -64,9 +64,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{-- <div class="p-4">
+                        <div class="p-4">
                             {{ $boxs->links() }}
-                        </div> --}}
+                        </div>
                     </div>
                 @endif
                 @if ($box_view)
