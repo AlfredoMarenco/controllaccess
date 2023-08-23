@@ -163,6 +163,15 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.controllaccess') }}" :active="request()->routeIs('admin.controllaccess')">
+                {{ __('Control de Accesos') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.reports') }}" :active="request()->routeIs('admin.reports')">
+                {{ __('Visualizar Palcos') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.administration') }}" :active="request()->routeIs('admin.administration')">
+                {{ __('Administration') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

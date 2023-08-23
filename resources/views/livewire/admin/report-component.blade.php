@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="px-4 pb-4 mb-4 shadow-xl bg-white">
-                    <div class="grid grid-cols-5 gap-8 place-content-center p-4">
+                    <div class="grid sm:grid-cols-1 lg:grid-cols-5 gap-8 place-content-center p-4">
                         @foreach ($boxs as $palco)
                             <div>
                                 <h1 class="text-center font-bold p-2">PALCO {{ $palco->name }} {{ $palco->identifier }}</h1>
