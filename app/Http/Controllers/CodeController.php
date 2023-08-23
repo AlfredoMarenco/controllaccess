@@ -70,9 +70,14 @@ class CodeController extends Controller
      * @param  \App\Models\Admin\Code  $code
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCodeRequest $request, Code $code)
+    public function update($code)
     {
-        //
+        $updateCode = Code::where('barcode',$code)->first();
+        $updateCode->update([
+            'status' => "0"
+        ]);
+
+        return $updateCode;
     }
 
     /**
