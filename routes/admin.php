@@ -3,6 +3,7 @@
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\EventController;
 use App\Http\Livewire\Admin\AdministrationComponent;
+use App\Http\Livewire\Admin\ConfigurationComponent;
 use App\Http\Livewire\Admin\ControllAccessComponent;
 use App\Http\Livewire\Admin\DashboardComponent;
 use App\Http\Livewire\Admin\ReportComponent;
@@ -29,6 +30,7 @@ Route::get('/', DashboardComponent::class)->name('dashboard');
 Route::get('/controll-access',ControllAccessComponent::class)->name('controllaccess');
 Route::get('/reports',ReportComponent::class)->name('reports');
 Route::get('/administration',AdministrationComponent::class)->name('administration');
+/* Route::get('/configuration',ConfigurationComponent::class)->name('configuration'); */
 
 
 Route::get('/update-box', function(){

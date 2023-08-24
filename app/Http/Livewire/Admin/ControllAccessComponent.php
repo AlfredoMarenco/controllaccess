@@ -95,6 +95,26 @@ class ControllAccessComponent extends Component
                     $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
                     $this->reset('barcode');
                     break;
+                case '3':
+                        $this->dispatchBrowserEvent('valid',[
+                            'title' => 'TARJETA REPORTADA',
+                            'html' => 'RETENER TARJETA',
+                            'icon' => 'warning',
+                            'timer' => 2500,
+                        ]);
+                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->reset('barcode');
+                    break;
+                case '4':
+                    $this->dispatchBrowserEvent('valid',[
+                        'title' => 'INVALIDO',
+                        'html' => 'TARJETA NO VALIDA PARA ESTE EVENTO',
+                        'icon' => 'error',
+                        'timer' => 2500,
+                    ]);
+                $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                $this->reset('barcode');
+                break;
             }
         }else{
             $this->dispatchBrowserEvent('valid',[

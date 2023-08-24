@@ -20,13 +20,15 @@ class AdministrationComponent extends Component
     public $boxes;
     public $box_name='';
     public $box_identifier='';
+    public $status = "";
 
     public $seatEdit = [
         'id'=> '',
         'name' => '',
         'identifier' => '',
         'seat' => '',
-        'barcode' => ''
+        'barcode' => '',
+        'status' => ''
     ];
     /* public $rules = [
         'seatEdit.barcode' => 'unique'
@@ -51,6 +53,7 @@ class AdministrationComponent extends Component
         $this->seatEdit['identifier'] = $code->box->identifier;
         $this->seatEdit['seat'] = $code->seat;
         $this->seatEdit['barcode'] = $code->barcode;
+        $this->seatEdit['status'] = $code->status;
         $this->resetErrorBag();
     }
 
@@ -64,15 +67,16 @@ class AdministrationComponent extends Component
 
     public function addCode(){
         $this->validate([
-            'barcode' => 'unique:codes',
+            'barcode' => 'required|unique:codes',
             'seat' => 'required|max:2',
+            'status' => 'required'
         ]);
         $code = Code::create([
             'barcode' => $this->barcode,
             'section' => $this->name,
             'row' => $this->identifier,
             'seat' => $this->seat,
-            'status' => "1",
+            'status' => $this->status,
             'event_id' => 1,
             'box_id' => $this->box->id
 
@@ -82,6 +86,7 @@ class AdministrationComponent extends Component
         $this->resetErrorBag();
         $this->add_view = false;
     }
+
     public function updateSeat($id){
         $this->barcode = $this->seatEdit['barcode'];
         $rules = [
@@ -90,7 +95,9 @@ class AdministrationComponent extends Component
         $code = Code::find($id);
         $this->validate($rules);
         $code->barcode = $this->seatEdit['barcode'];
+        $code->status = $this->seatEdit['status'];
         $code->save();
+        $this->box = Box::find($this->box->id);
         $this->reset('seatEdit');
         $this->resetErrorBag();
         $this->seat_view = false;
