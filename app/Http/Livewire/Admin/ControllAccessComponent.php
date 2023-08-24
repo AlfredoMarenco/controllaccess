@@ -112,8 +112,8 @@ class ControllAccessComponent extends Component
                         'icon' => 'error',
                         'timer' => 2500,
                     ]);
-                $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
-                $this->reset('barcode');
+                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->reset('barcode');
                 break;
             }
         }else{
