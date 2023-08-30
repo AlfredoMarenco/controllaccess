@@ -14,6 +14,8 @@
                         <input type="radio" wire:model="type" name="type" value="1">
                         <x-jet-label class="mx-4" value="Salida:" />
                         <input type="radio" wire:model="type" name="type" value="2">
+                        <x-jet-label class="mx-4" value="Boletos:" />
+                        <input type="radio" wire:model="type" name="type" value="3">
                     </div>
                     <div class="mx-auto p-4 text-center">
                         <x-jet-label class="mb-4" value="Codigo:" />

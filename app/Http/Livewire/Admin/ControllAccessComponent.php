@@ -116,6 +116,21 @@ class ControllAccessComponent extends Component
                     $this->reset('barcode');
                 break;
             }
+        }elseif($this->type == 3){
+            $this->dispatchBrowserEvent('valid',[
+                'title' => 'CODIGO VALIDO',
+                'html' => 'PASE',
+                'icon' => 'success',
+                'timer' => 1300,
+            ]);
+            Code::create([
+                'barcode' => $this->barcode,
+                'status' => "2",
+                'section' => 'Boletos',
+                'event_id' => 1,
+            ]);
+            /* $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get(); */
+            $this->reset('barcode');
         }else{
             $this->dispatchBrowserEvent('valid',[
                 'title' => 'CODIGO INVALIDO',
