@@ -8,14 +8,16 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end">
-                <x-jet-button class="mt-2" wire:click='restartDataBase()'>Restaurar Base de datos</x-jet-button>
+                @if (auth()->user()->email == 'julio.peniche@boletea.com' || auth()->user()->email == 'alfredomarenco@boletea.com')
+                    <x-jet-button class="mt-2" wire:click='restartDataBase()'>Restaurar Base de datos</x-jet-button>
+                @endif
 
             </div>
             @if (session()->has('message'))
-                    <div class="w-full rounded-md p-2 bg-green-300 text-green-800">
-                        {{ session('message') }}
-                    </div>
-                @endif
+                <div class="w-full rounded-md p-2 bg-green-300 text-green-800">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
 
             </div>
@@ -35,7 +37,7 @@
                         <x-jet-label value="Palco:" />
                         <select wire:model="box_identifier"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm py-1">
-                            <option value="" selected>Todos</option>
+                            <option value="" selected>Todos</option><
                             @foreach ($boxes_identifiers->unique('identifier') as $identifier)
                                 <option value="{{ $identifier->identifier }}">{{ $identifier->identifier }}</option>
                             @endforeach
