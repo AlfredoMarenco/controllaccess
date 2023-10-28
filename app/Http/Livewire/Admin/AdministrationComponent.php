@@ -65,6 +65,16 @@ class AdministrationComponent extends Component
         $this->reset('barcode');
     }
 
+    public function restartDataBase(){
+        $codes = Code::all();
+        foreach ($codes as $code) {
+            $code->update([
+                'status' => '1'
+            ]);
+        }
+        session()->flash('message', 'Base de datos restaurada.');
+    }
+
     public function addCode(){
         $this->validate([
             'barcode' => 'required|unique:codes',

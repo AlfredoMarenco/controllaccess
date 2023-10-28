@@ -7,7 +7,17 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-end">
+                <x-jet-button class="mt-2" wire:click='restartDataBase()'>Restaurar Base de datos</x-jet-button>
+
+            </div>
+            @if (session()->has('message'))
+                    <div class="w-full rounded-md p-2 bg-green-300 text-green-800">
+                        {{ session('message') }}
+                    </div>
+                @endif
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
+
             </div>
             @if ($boxs_view)
                 <div class="flex items-center justify-start p-6 space-x-10">
