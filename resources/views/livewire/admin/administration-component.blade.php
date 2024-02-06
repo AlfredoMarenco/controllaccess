@@ -9,15 +9,31 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-end">
                 @if (auth()->user()->email == 'julio.peniche@boletea.com' || auth()->user()->email == 'alfredomarenco@boletea.com')
-                    <x-jet-button class="mt-2" wire:click='restartDataBase()'>Restaurar Base de datos</x-jet-button>
+                    <x-jet-button class="mt-2" wire:click="$set('modal_restDataBase',true)">Restaurar Base de datos</x-jet-button>
                 @endif
-
             </div>
             @if (session()->has('message'))
                 <div class="w-full rounded-md p-2 bg-green-300 text-green-800">
                     {{ session('message') }}
                 </div>
             @endif
+            <x-jet-dialog-modal wire:model="modal_restDataBase">
+                <x-slot name="title">Guardar base de datos actual</x-slot>
+                <x-slot name="content">
+                    <div>
+                        <x-jet-label value="Nombre del evento"/>
+                        <x-jet-input type="text" class="w-full" wire:model="event_name"/>
+                    </div>
+                    <div>
+                        <x-jet-label value="Clave del evento"/>
+                        <x-jet-input type="text" class="w-full" wire:model="event_code"/>
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-jet-danger-button class="mr-2" wire:click="$set('modal_restDataBase',false)">Cancelar</x-jet-danger-button>
+                    <x-jet-button wire:click="restartDataBase()">Guardar codigos y restablecer base</x-jet-button>
+                </x-slot>
+            </x-jet-dialog-modal>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 mb-4">
 
             </div>
