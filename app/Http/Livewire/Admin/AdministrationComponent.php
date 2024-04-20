@@ -4,20 +4,14 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Admin\Box;
 use App\Models\Admin\Code;
-use App\Models\Admin\Event;
-use App\Models\Record;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class AdministrationComponent extends Component
 {
-
-    use WithPagination;
     public $boxs_view=true;
     public $box_view=false;
     public $seat_view=false;
     public $add_view=false;
-    public $add_box_modal=false;
     public $box;
     public $identifier;
     public $section;
@@ -26,8 +20,7 @@ class AdministrationComponent extends Component
     public $boxes;
     public $box_name='';
     public $box_identifier='';
-    public $name_box;
-    public $identifier_box;
+    public $status = "";
 
     public $seatEdit = [
         'id'=> '',
@@ -46,15 +39,6 @@ class AdministrationComponent extends Component
     ];
 
     public $listeners = ['deleteSeat'];
-
-
-    public function addBox(){
-        Box::create([
-            'name' => $this->name_box,
-            'identifier' => $this->identifier_box
-        ]);
-        $this->reset('name_box','identifier_box','add_box_modal');
-    }
 
     public function showBox(Box $box){
         $this->box_view = true;
@@ -79,34 +63,6 @@ class AdministrationComponent extends Component
         $this->name = $this->box->name;
         $this->resetErrorBag();
         $this->reset('barcode');
-    }
-
-    public function restartDataBase(){
-        $event = Event::create([
-            'name' => $this->event_name,
-            'code' => $this->event_code
-        ]);
-        $codes = Code::all();
-        foreach ($codes as $code) {
-            Record::create([
-                'barcode' => $code->barcode,
-                'name' => $code->name,
-                'row' => $code->row,
-                'seat' => $code->seat,
-                'status' => $code->status,
-                'event_id' => $event->id,
-                //'updated_at' => $code->updated_at,
-                'box_id' => $code->box_id
-            ]);
-        }
-        foreach ($codes as $code) {
-            $code->update([
-                'status' => '1'
-            ]);
-        }
-        session()->flash('message', 'Base de datos restaurada.');
-        $this->reset('event_name','event_code');
-        $this->modal_restDataBase = false;
     }
 
     public function addCode(){
