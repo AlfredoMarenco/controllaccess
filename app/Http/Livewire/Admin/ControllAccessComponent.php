@@ -16,7 +16,7 @@ class ControllAccessComponent extends Component
 
         $barcode = Code::where('barcode', $this->barcode)->first();
         if ($barcode) {
-        $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+        $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
             switch ($barcode->status) {
                 case '0':
                     if ($this->type==1) {
@@ -26,6 +26,7 @@ class ControllAccessComponent extends Component
                             'icon' => 'error',
                             'timer' => 2500,
                         ]);
+                        $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
                     } else {
                         if (!$barcode->status == 1) {
                             $this->dispatchBrowserEvent('valid',[
@@ -47,7 +48,7 @@ class ControllAccessComponent extends Component
                         }
                     }
 
-                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
                     $this->reset('barcode');
                     break;
                 case '1':
@@ -69,7 +70,7 @@ class ControllAccessComponent extends Component
                             'timer' => 2500,
                         ]);
                     }
-                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
                     $this->reset('barcode');
                     break;
                 case '2':
@@ -83,6 +84,7 @@ class ControllAccessComponent extends Component
                         $barcode->update([
                             'status' => "0",
                         ]);
+                        $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
 
                     }else{
                         $this->dispatchBrowserEvent('valid',[
@@ -92,7 +94,7 @@ class ControllAccessComponent extends Component
                             'timer' => 2500,
                         ]);
                     }
-                    $this->boxs = $barcode->where('row',$barcode->row)->where('section',$barcode->section)->get();
+                    $this->boxs = $barcode->where('box_id',$barcode->box_id)->get();
                     $this->reset('barcode');
                     break;
                 case '3':

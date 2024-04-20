@@ -7,13 +7,17 @@ use App\Models\Admin\Code;
 use App\Models\Admin\Event;
 use App\Models\Record;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdministrationComponent extends Component
 {
+
+    use WithPagination;
     public $boxs_view=true;
     public $box_view=false;
     public $seat_view=false;
     public $add_view=false;
+    public $add_box_modal=false;
     public $box;
     public $identifier;
     public $section;
@@ -22,10 +26,8 @@ class AdministrationComponent extends Component
     public $boxes;
     public $box_name='';
     public $box_identifier='';
-    public $status = "";
-    public $event_name="";
-    public $event_code="";
-    public $modal_restDataBase = false;
+    public $name_box;
+    public $identifier_box;
 
     public $seatEdit = [
         'id'=> '',
@@ -44,6 +46,15 @@ class AdministrationComponent extends Component
     ];
 
     public $listeners = ['deleteSeat'];
+
+
+    public function addBox(){
+        Box::create([
+            'name' => $this->name_box,
+            'identifier' => $this->identifier_box
+        ]);
+        $this->reset('name_box','identifier_box','add_box_modal');
+    }
 
     public function showBox(Box $box){
         $this->box_view = true;

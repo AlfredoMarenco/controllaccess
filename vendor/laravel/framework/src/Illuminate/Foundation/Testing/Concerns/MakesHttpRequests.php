@@ -64,11 +64,11 @@ trait MakesHttpRequests
     protected $withCredentials = false;
 
     /**
-     * The latest test response.
+     * The latest test response (if any).
      *
      * @var \Illuminate\Testing\TestResponse|null
      */
-    public $latestResponse;
+    public static $latestResponse;
 
     /**
      * Define additional headers to be sent with the request.
@@ -107,6 +107,18 @@ trait MakesHttpRequests
     public function withToken(string $token, string $type = 'Bearer')
     {
         return $this->withHeader('Authorization', $type.' '.$token);
+    }
+
+    /**
+     * Add a basic authentication header to the request with the given credentials.
+     *
+     * @param  string  $username
+     * @param  string  $password
+     * @return $this
+     */
+    public function withBasicAuth(string $username, string $password)
+    {
+        return $this->withToken(base64_encode("$username:$password"), 'Basic');
     }
 
     /**
@@ -551,7 +563,7 @@ trait MakesHttpRequests
             $response = $this->followRedirects($response);
         }
 
-        return $this->latestResponse = $this->createTestResponse($response);
+        return static::$latestResponse = $this->createTestResponse($response);
     }
 
     /**

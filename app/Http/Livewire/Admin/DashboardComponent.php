@@ -11,7 +11,7 @@ class DashboardComponent extends Component
 {
     public function render()
     {
-        $scanner = Code::where('status','!=','1')->count();
+        $scanner = Code::where('status','=','0')->count();
         $actives = Code::where('status','=','1')->count();
         $pieChartOcupation = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación del evento')
@@ -25,11 +25,11 @@ class DashboardComponent extends Component
 
         $oro_scanner = Code::whereHas('box',function(Builder $query){
             $query->where('name','ORO');
-        })->where('status','!=','1')->count();
+        })->where('status','=','0')->count();
 
         $platino_scanner = Code::whereHas('box',function(Builder $query){
             $query->where('name','PLATINO');
-        })->where('status','!=','1')->count();
+        })->where('status','=','0')->count();
 
 
         $oro_actives = Code::whereHas('box',function(Builder $query){
