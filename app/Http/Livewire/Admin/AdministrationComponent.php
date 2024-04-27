@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Admin\Box;
 use App\Models\Admin\Code;
+use App\Models\Admin\Event;
+use App\Models\Record;
 use Livewire\Component;
 
 class AdministrationComponent extends Component
@@ -21,6 +23,9 @@ class AdministrationComponent extends Component
     public $box_name='';
     public $box_identifier='';
     public $status = "";
+    public $event_name="";
+    public $event_code="";
+    public $modal_restDataBase = false;
 
     public $seatEdit = [
         'id'=> '',
@@ -66,7 +71,23 @@ class AdministrationComponent extends Component
     }
 
     public function restartDataBase(){
+        $event = Event::create([
+            'name' => $this->event_name,
+            'code' => $this->event_code
+        ]);
         $codes = Code::all();
+        foreach ($codes as $code) {
+            Record::create([
+                'barcode' => $code->barcode,
+                'name' => $code->name,
+                'row' => $code->row,
+                'seat' => $code->seat,
+                'status' => $code->status,
+                'event_id' => $event->id,
+                //'updated_at' => $code->updated_at,
+                'box_id' => $code->box_id
+            ]);
+        }
         foreach ($codes as $code) {
             if ($code->status == '0') {
                 $code->update([
@@ -75,6 +96,8 @@ class AdministrationComponent extends Component
             }
         }
         session()->flash('message', 'Base de datos restaurada.');
+        $this->reset('event_name','event_code');
+        $this->modal_restDataBase = false;
     }
 
     public function addCode(){
