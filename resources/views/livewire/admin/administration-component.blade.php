@@ -76,8 +76,7 @@
                     <div class="w-full px-4 py-4 my-4 shadow-xl bg-gray-200">
                         <div class="grid grid-cols-4 gap-2 mt-6 mb-6">
                             @foreach ($box->codes as $seat)
-                                <div wire:click="showSeat({{ $seat }})"
-                                    class="flex justify-center items-center bg-green-600 hover:bg-green-800 text-white text-lg font-bold shadow-lg cursor-pointer">
+                                <div wire:click="showSeat({{ $seat }})" class="flex justify-center items-center bg-green-600 hover:bg-green-800 text-white text-lg font-bold shadow-lg cursor-pointer">
                                     <p>{{ $seat->seat }}</p>
                                 </div>
                             @endforeach
