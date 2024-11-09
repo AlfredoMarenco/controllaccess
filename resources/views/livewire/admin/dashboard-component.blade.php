@@ -16,6 +16,15 @@
                         <livewire:livewire-column-chart :column-chart-model="$pieChartForSections" />
                     </div>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 place-content-center p-4">
+                    <div style="height: 35rem;">
+                        <livewire:livewire-pie-chart :pie-chart-model="$pieChartOcupation2" />
+                    </div>
+                    <div style="height: 35rem;">
+                        <livewire:livewire-column-chart :column-chart-model="$pieChartForSections2" />
+                    </div>
+                </div>
             </div>
         </div>
     </div>
