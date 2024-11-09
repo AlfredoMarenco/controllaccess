@@ -1,10 +1,11 @@
 <div>
     <x-slot name="header">
         <h2 class="flex items-center justify-between font-semibold text-xl text-gray-800 leading-tight">
-            <div>
+            <div class="sm:text-sm text-md">
                 {{ __('Controll de accesos') }}
             </div>
             <div class="text-md">
+                <br>
                 {{ auth()->user()->email }}
             </div>
         </h2>
