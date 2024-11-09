@@ -27,7 +27,7 @@
                     </div>
                 </form>
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="mx-auto w-1/5 px-4 pb-4 mb-4 shadow-xl bg-gray-300">
+                    <div class="mx-auto md:w-1/5 px-4 pb-4 mb-4 shadow-xl bg-gray-300">
                         @if ($boxs)
                             <h1 class="text-center text-lg pt-2 mb-2">Palco: {{ $boxs->first()->section }}
                                 {{ $boxs->first()->row }}</h1>
