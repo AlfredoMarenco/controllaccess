@@ -58,7 +58,7 @@ class DashboardComponent extends Component
         $scanner2 = Code::where('status2','!=','1')->count();
         $actives2 = Code::where('status2','=','1')->count();
         $pieChartOcupation2 = LivewireCharts::pieChartModel()
-        ->setTitle('Reporte de ocupación del evento')
+        ->setTitle('Reporte de ocupación / Filtros interiores')
         ->setDataLabelsEnabled('Por Ingresar','Ingresados')
         ->withDataLabels()
         ->setOpacity(1)
@@ -85,7 +85,7 @@ class DashboardComponent extends Component
         })->where('status2','=','1')->count();
 
         $pieChartForSections2 = LivewireCharts::columnChartModel()
-        ->setTitle('Reporte de ocupación del evento')
+        ->setTitle('Reporte de ocupación - Filtros interiores')
         ->setDataLabelsEnabled('Oro','Platino')
         ->withDataLabels()
         ->setOpacity(1)
