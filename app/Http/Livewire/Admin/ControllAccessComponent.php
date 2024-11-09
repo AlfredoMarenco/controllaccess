@@ -74,7 +74,7 @@ class ControllAccessComponent extends Component
                                     'title' => 'LA TARJETA USADA INTERNAMENTE',
                                     'html' => 'ESTA TARJETA SE USO EN FILTRO INTERNO',
                                     'icon' => 'warning',
-                                    'timer' => 2500,
+                                    'timer' => 4500,
                                 ]);
                             }
                         }else{
