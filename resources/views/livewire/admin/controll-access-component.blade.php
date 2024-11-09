@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="flex items-center justify-between font-semibold text-xl text-gray-800 leading-tight">
-            <div class="sm:text-sm text-md">
+            <div class="sm:text-sm lg:text-md">
                 {{ __('Controll de accesos') }}
             </div>
             <div class="text-md">
