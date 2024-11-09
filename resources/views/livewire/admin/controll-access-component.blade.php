@@ -1,12 +1,16 @@
 <div>
     <x-slot name="header">
         <h2 class="flex items-center justify-between font-semibold text-xl text-gray-800 leading-tight">
-            <div class="sm:text-sm lg:text-md">
+            <div class="sm:text-sm md:text-md">
                 {{ __('Controll de accesos') }}
             </div>
             <div class="text-md">
                 <br>
-                {{ auth()->user()->email }}
+                @php
+                    $username = explode('@',auth()->user()->email);
+                    $username = $username[0];
+                    echo $username;
+                @endphp
             </div>
         </h2>
     </x-slot>
