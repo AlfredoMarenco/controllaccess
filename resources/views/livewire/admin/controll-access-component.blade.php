@@ -4,7 +4,7 @@
             <div>
                 {{ __('Controll de accesos') }}
             </div>
-            <div class="justify-end">
+            <div class="text-xs">
                 {{ auth()->user()->email }}
             </div>
         </h2>
