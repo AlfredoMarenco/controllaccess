@@ -65,7 +65,7 @@ class ControllAccessComponent extends Component
                                     'timer' => 1300,
                                 ]);
                                 $barcode->update([
-                                    //'status' => "0", //status de salida
+                                    'status' => "0", //status de salida
                                     'updated2' => now(),
 
                                 ]);
