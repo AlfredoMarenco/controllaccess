@@ -6,11 +6,7 @@
             </div>
             <div class="text-md">
                 <br>
-                @php
-                    $username = explode('@',auth()->user()->email);
-                    $username = $username[0];
-                    echo $username;
-                @endphp
+                {{ auth()->user()->name}}
             </div>
         </h2>
     </x-slot>
