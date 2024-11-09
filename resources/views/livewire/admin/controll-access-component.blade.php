@@ -4,7 +4,7 @@
             <div>
                 {{ __('Controll de accesos') }}
             </div>
-            <div class="text-xs">
+            <div class="text-md">
                 {{ auth()->user()->email }}
             </div>
         </h2>
