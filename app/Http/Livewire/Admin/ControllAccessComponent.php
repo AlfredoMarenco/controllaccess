@@ -66,7 +66,6 @@ class ControllAccessComponent extends Component
                                 ]);
                                 $barcode->update([
                                     'status' => "0", //status de salida
-                                    'updated2' => now(),
 
                                 ]);
                             }else{
