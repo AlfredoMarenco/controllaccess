@@ -11,7 +11,7 @@ class DashboardComponent extends Component
 {
     public function render()
     {
-        $scanner = Code::where('status','!=','1')->count();
+        $scanner = Code::where('status','=','0')->count();
         $actives = Code::where('status','=','1')->count();
         $pieChartOcupation = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación del evento')
@@ -55,7 +55,7 @@ class DashboardComponent extends Component
 
 
         /* Filtros interiores  */
-        $scanner2 = Code::where('status2','!=','1')->count();
+        $scanner2 = Code::where('status2','0','1')->count();
         $actives2 = Code::where('status2','=','1')->count();
         $pieChartOcupation2 = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación / Filtros interiores')
