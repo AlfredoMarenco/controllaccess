@@ -25,11 +25,11 @@ class DashboardComponent extends Component
 
         $oro_scanner = Code::whereHas('box',function(Builder $query){
             $query->where('name','ORO');
-        })->where('status','!=','1')->count();
+        })->where('status','=','0')->count();
 
         $platino_scanner = Code::whereHas('box',function(Builder $query){
             $query->where('name','PLATINO');
-        })->where('status','!=','1')->count();
+        })->where('status','=','0')->count();
 
 
         $oro_actives = Code::whereHas('box',function(Builder $query){
@@ -69,11 +69,11 @@ class DashboardComponent extends Component
 
         $oro_scanner2 = Code::whereHas('box',function(Builder $query){
             $query->where('name','ORO');
-        })->where('status2','!=','1')->count();
+        })->where('status2','=','0')->count();
 
         $platino_scanner2 = Code::whereHas('box',function(Builder $query){
             $query->where('name','PLATINO');
-        })->where('status2','!=','1')->count();
+        })->where('status2','=','0')->count();
 
 
         $oro_actives2 = Code::whereHas('box',function(Builder $query){
