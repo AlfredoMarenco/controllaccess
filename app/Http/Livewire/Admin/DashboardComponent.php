@@ -12,7 +12,7 @@ class DashboardComponent extends Component
     public function render()
     {
         $scanner = Code::where('status','=','0')->count();
-        $actives = Code::where('status','=','1')->count();
+        $actives = Code::where('status','!=','0')->count();
         $pieChartOcupation = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación del evento')
         ->setDataLabelsEnabled('Por Ingresar','Ingresados')
@@ -34,11 +34,11 @@ class DashboardComponent extends Component
 
         $oro_actives = Code::whereHas('box',function(Builder $query){
             $query->where('name','ORO');
-        })->where('status','=','1')->count();
+        })->where('status','!=','0')->count();
 
         $platino_actives = Code::whereHas('box',function(Builder $query){
             $query->where('name','PLATINO');
-        })->where('status','=','1')->count();
+        })->where('status','!=','0')->count();
 
         $pieChartForSections = LivewireCharts::columnChartModel()
         ->setTitle('Reporte de ocupación del evento')
@@ -55,8 +55,8 @@ class DashboardComponent extends Component
 
 
         /* Filtros interiores  */
-        $scanner2 = Code::where('status2','0','1')->count();
-        $actives2 = Code::where('status2','=','1')->count();
+        $scanner2 = Code::where('status2','=','1')->count();
+        $actives2 = Code::where('status2','!=','0')->count();
         $pieChartOcupation2 = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación / Filtros interiores')
         ->setDataLabelsEnabled('Por Ingresar','Ingresados')
@@ -78,11 +78,11 @@ class DashboardComponent extends Component
 
         $oro_actives2 = Code::whereHas('box',function(Builder $query){
             $query->where('name','ORO');
-        })->where('status2','=','1')->count();
+        })->where('status2','!=','0')->count();
 
         $platino_actives2 = Code::whereHas('box',function(Builder $query){
             $query->where('name','PLATINO');
-        })->where('status2','=','1')->count();
+        })->where('status2','!=','0')->count();
 
         $pieChartForSections2 = LivewireCharts::columnChartModel()
         ->setTitle('Reporte de ocupación - Filtros interiores')
