@@ -65,8 +65,7 @@ class ControllAccessComponent extends Component
                                     'timer' => 1300,
                                 ]);
                                 $barcode->update([
-                                    //'status' => "0", //status de salida
-                                    'updated2' => now(),
+                                    'status' => "0", //status de salida
 
                                 ]);
                             }else{
@@ -75,7 +74,7 @@ class ControllAccessComponent extends Component
                                     'title' => 'LA TARJETA USADA INTERNAMENTE',
                                     'html' => 'ESTA TARJETA SE USO EN FILTRO INTERNO',
                                     'icon' => 'warning',
-                                    'timer' => 2500,
+                                    'timer' => 4500,
                                 ]);
                             }
                         }else{
