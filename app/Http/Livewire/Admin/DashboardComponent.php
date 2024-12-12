@@ -55,7 +55,7 @@ class DashboardComponent extends Component
 
 
         /* Filtros interiores  */
-        $scanner2 = Code::where('status2','=','1')->count();
+        $scanner2 = Code::where('status2','=','0')->count();
         $actives2 = Code::where('status2','!=','0')->count();
         $pieChartOcupation2 = LivewireCharts::pieChartModel()
         ->setTitle('Reporte de ocupación / Filtros interiores')
